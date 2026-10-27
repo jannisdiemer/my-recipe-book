@@ -37,7 +37,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" type="image/png" href="/Images/logo.png">
+        <link rel="icon" type="image/png" href="/images/logo.png">
         <title><?= htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8') ?></title>
         <link rel="stylesheet" type="text/css" href="/style.css">
     </head>
