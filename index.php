@@ -1,7 +1,7 @@
 <?php
     require_once "mysql.php";
 
-    $validCode = "9867213987";
+    $validCode = "YOUR-CODE";
     $givenCode = $_GET['code'] ?? '';
     if (!hash_equals($validCode, (string)$givenCode)) {
         http_response_code(403);
@@ -37,6 +37,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/png" href="/Images/logo.png">
         <title><?= htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8') ?></title>
         <link rel="stylesheet" type="text/css" href="/style.css">
     </head>
@@ -131,6 +132,6 @@
         </div>
         <a class="new-link" href="create_recipe.php?type=<?= urlencode($currentType) ?>&code=<?= urlencode($validCode) ?>" aria-label="Neues Rezept hinzufügen"><span aria-hidden="true">＋</span> Rezept hinzufügen</a>
 
-        <script src="/scripts.js"></script>
+        <script src="/script.js"></script>
     </body>
 </html>
