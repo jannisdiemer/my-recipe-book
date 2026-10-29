@@ -150,6 +150,57 @@ Beide Tabellen besitzen dieselben Spalten:
 
 `recepies` speichert Kochrezepte, `backing` speichert Backrezepte. Die Spaltennamen müssen exakt erhalten bleiben, da die PHP-Abfragen sie direkt verwenden.
 
+## Beispielrezept hinzufügen: Herbstliche Kürbis-Bulgur-Bowl
+
+Als Beispiel kannst du das selbst erstellte Rezept **„Herbstliche Kürbis-Bulgur-Bowl mit Kichererbsen, Avocado & Frischkäse“** in deiner eigenen Installation hinzufügen. Das Rezept ist für 2 Portionen gedacht und benötigt insgesamt etwa 45 Minuten (davon ca. 25 Minuten aktive Zubereitung).
+
+### 1. Rezeptbild ablegen
+
+Lege die Bilddatei `Bowl.jpg` in den Ordner `images/` deiner Installation. Achte darauf, dass der Dateiname inklusive Groß-/Kleinschreibung exakt stimmt. Der SQL-Eintrag verwendet `Bowl.jpg` als Bildnamen.
+
+### 2. SQL zum Einfügen des Rezepts
+
+Führe diesen Befehl in phpMyAdmin im Tab **SQL** aus, während du die Datenbank `my_recipe_book` ausgewählt hast. Das Rezept wird in die Tabelle `recepies` eingefügt und erscheint damit bei den Kochrezepten.
+
+```sql
+INSERT INTO recepies (
+  Name,
+  image,
+  duration,
+  prep_time,
+  ingredients,
+  description,
+  difficulty,
+  servings,
+  vegetarian,
+  vegan,
+  high_protein,
+  gluten_free,
+  lactose_free
+) VALUES (
+  'Herbstliche Kürbis-Bulgur-Bowl mit Kichererbsen, Avocado & Frischkäse',
+  'Bowl.jpg',
+  45,
+  25,
+  '150 g Bulgur (trocken)\n400 g Kürbis\n200 g Kichererbsen\n1 Avocado\n1 Paprika\n1/2 Gurke\n2 Tomaten\n1 Zwiebel\nHummus\nFrischkäse\nGemüsebrühe',
+  '1. Kürbis vorbereiten\nDen Backofen auf 200 °C Ober-/Unterhitze vorheizen. Den Hokkaido gründlich waschen, halbieren und die Kerne sowie Fasern mit einem Löffel entfernen. Die Schale bleibt dran. Den Kürbis in etwa 2 cm große Würfel schneiden.\n\n2. Kürbis rösten\nKürbis mit Olivenöl, Paprikapulver, Salz und Pfeffer vermengen. Auf einem Backblech verteilen und etwa 25–30 Minuten rösten.\n\n3. Bulgur zubereiten\nDen Bulgur nach Packungsanweisung in Gemüsebrühe zubereiten. Je nach Sorte dauert das meist etwa 10–15 Minuten.\n\n4. Bulgur und Zwiebel anbraten\nDen fertigen Bulgur mit einer gewürfelten Zwiebel in der Pfanne mit Tomatenmark anbraten.\n\n5. Gemüse schneiden\nPaprika, Gurke und Tomaten würfeln. Die Avocado halbieren, den Kern entfernen und das Fruchtfleisch würfeln. Die Avocado erst kurz vor dem Anrichten schneiden, damit sie frisch bleibt.\n\n6. Bowls anrichten\nDen Bulgur auf zwei Schüsseln verteilen. Kürbis und Kichererbsen zusammen mit Gurke, Paprika, Tomaten und Avocado darauf anrichten. Jeweils 2 EL Hummus und Frischkäse dazugeben.',
+  'Einfach',
+  2,
+  1,
+  0,
+  0,
+  0,
+  0
+);
+```
+
+**Hinweise:**
+
+- Die Kennzeichen `vegetarian`, `vegan`, `high_protein`, `gluten_free` und `lactose_free` werden als `0` (nein) oder `1` (ja) gespeichert. Dieses Rezept ist vegetarisch, aber durch Bulgur nicht glutenfrei; bei normalem Frischkäse ist es auch nicht laktosefrei.
+- Passe die Zutaten oder Zubereitung im SQL an, falls du dein Rezept anders zubereitest. Mengen für Hummus, Frischkäse, Gemüsebrühe, Olivenöl, Paprikapulver, Salz, Pfeffer und Tomatenmark sind im Beispiel nicht genauer angegeben.
+- Falls dein Projekt die Rezeptfelder anders formatiert ausgibt, achte darauf, dass Zeilenumbrüche in `ingredients` und `description` in der Oberfläche korrekt dargestellt werden.
+- Wenn du das Rezept in einer anderen Datenbanktabelle speichern möchtest, ersetze `recepies` entsprechend. Für dieses Kochrezept ist `recepies` die richtige Tabelle.
+
 ## Anpassungs-Checkliste
 
 - [ ] `mysql.php`: Datenbank-Host, Datenbankname, Benutzername und Passwort eintragen
